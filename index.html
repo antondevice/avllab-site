@@ -3,123 +3,506 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Антон — автоматизация бизнес-процессов и ИИ-решения</title>
-  <meta name="description" content="Автоматизация бизнес-процессов и внедрение ИИ-решений для бизнеса.">
+  <title>AVL Lab — ИИ и автоматизация для бизнеса</title>
+  <meta name="description" content="Внедряем ИИ и автоматизацию туда, где бизнес теряет деньги и время: боты-консультанты, связка склада, сайта и маркетплейсов, CRM, контент-завод, обучение команд. Бесплатный разбор задачи.">
+  <meta property="og:title" content="AVL Lab — ИИ и автоматизация для бизнеса">
+  <meta property="og:description" content="Сначала разбираемся в вашем бизнесе — потом подбираем технологию. Бесплатный разбор задачи.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avllab.ru/">
   <style>
     :root {
-      --bg: #0e1116;
-      --card: #161b22;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --border: #232a33;
+      --ink: #12161c;
+      --ink-soft: #3d4652;
+      --muted: #6b7480;
+      --paper: #f6f5f1;
+      --card: #ffffff;
+      --line: #e3e1da;
+      --accent: #1f6feb;
+      --accent-ink: #0b4fc0;
+      --accent-soft: #e8f0fe;
+      --night: #0d1117;
+      --night-2: #151b24;
+      --night-line: #263040;
+      --night-text: #e8edf3;
+      --night-muted: #9aa6b4;
+      --ok: #1a7f4b;
+      --ok-soft: #e6f4ec;
+      --pilot: #9a5b00;
+      --pilot-soft: #fdf1df;
+      --radius: 18px;
+      --wrap: 1120px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #1b2230 0%, var(--bg) 60%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
       line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
     }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 40px;
-      max-width: 560px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    a { color: var(--accent-ink); }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    section { padding: 88px 0; }
+    .eyebrow {
+      font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
     }
-    .badge {
-      display: inline-block;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 6px 14px;
-      margin-bottom: 24px;
+    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -.02em; margin-bottom: 18px; max-width: 760px; }
+    .lead { font-size: 19px; color: var(--ink-soft); max-width: 720px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 16px 26px; border-radius: 12px; font-weight: 600; font-size: 17px;
+      text-decoration: none; transition: transform .15s, background .15s, border-color .15s;
+      border: 1px solid transparent; cursor: pointer;
     }
-    h1 {
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-ink); }
+    .btn-ghost { color: var(--night-text); border-color: var(--night-line); }
+    .btn-ghost:hover { border-color: var(--night-muted); }
+
+    /* Шапка */
+    header.top {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(13,17,23,.88); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--night-line);
     }
-    .tagline {
-      font-size: 18px;
-      color: var(--muted);
-      margin-bottom: 32px;
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { color: var(--night-text); font-weight: 700; font-size: 19px; text-decoration: none; letter-spacing: -.01em; }
+    .logo span { color: var(--accent); }
+    nav.menu { display: flex; gap: 26px; }
+    nav.menu a { color: var(--night-muted); text-decoration: none; font-size: 15px; }
+    nav.menu a:hover { color: var(--night-text); }
+    .top-cta { padding: 10px 18px; font-size: 15px; }
+
+    /* Первый экран */
+    .hero {
+      background: radial-gradient(circle at 80% -10%, #1d3a6b 0%, transparent 55%), var(--night);
+      color: var(--night-text);
+      padding: 96px 0 88px;
     }
-    .lead {
-      font-size: 16px;
-      margin-bottom: 36px;
+    .hero .badge {
+      display: inline-block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--night-muted); border: 1px solid var(--night-line); border-radius: 999px;
+      padding: 6px 14px; margin-bottom: 28px;
     }
-    .lead strong { color: var(--text); }
-    .contacts {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .hero h1 {
+      font-size: clamp(34px, 5.6vw, 60px); line-height: 1.08; letter-spacing: -.03em;
+      max-width: 900px; margin-bottom: 24px;
     }
-    .contact {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: #0e1116;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
+    .hero h1 em { font-style: normal; color: #6ea8ff; }
+    .hero .sub { font-size: clamp(18px, 2vw, 21px); color: var(--night-muted); max-width: 720px; margin-bottom: 38px; }
+    .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 64px; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--night-line); border: 1px solid var(--night-line); border-radius: var(--radius); overflow: hidden; }
+    .fact { background: var(--night-2); padding: 24px 26px; }
+    .fact b { display: block; font-size: 22px; margin-bottom: 4px; color: var(--night-text); }
+    .fact span { color: var(--night-muted); font-size: 15px; }
+
+    /* Боли */
+    .pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+    .pain { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .pain .ic { font-size: 26px; margin-bottom: 12px; }
+    .pain p { color: var(--ink-soft); font-size: 16px; }
+    .pain p b { color: var(--ink); display: block; font-size: 17px; margin-bottom: 6px; }
+
+    /* Услуги */
+    .services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; margin-top: 44px; }
+    .svc { grid-column: span 2; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; }
+    .svc.wide { grid-column: span 3; }
+    .svc .num { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: .08em; margin-bottom: 14px; }
+    .svc h3 { font-size: 21px; line-height: 1.25; margin-bottom: 10px; letter-spacing: -.01em; }
+    .svc p { color: var(--ink-soft); font-size: 16px; margin-bottom: 16px; }
+    .svc ul { list-style: none; margin-top: auto; border-top: 1px solid var(--line); padding-top: 14px; }
+    .svc li { font-size: 15px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+    .svc li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+    .svc.dark { background: var(--night); border-color: var(--night); color: var(--night-text); }
+    .svc.dark p, .svc.dark li { color: var(--night-muted); }
+    .svc.dark ul { border-color: var(--night-line); }
+    .svc.dark .num { color: #6ea8ff; }
+
+    /* Кейсы */
+    .cases-sec { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 44px; }
+    .case { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; background: var(--paper); }
+    .case .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .case .who { font-size: 14px; color: var(--muted); font-weight: 600; }
+    .tag { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+    .tag.ok { color: var(--ok); background: var(--ok-soft); }
+    .tag.pilot { color: var(--pilot); background: var(--pilot-soft); }
+    .case h3 { font-size: 21px; line-height: 1.25; margin-bottom: 12px; letter-spacing: -.01em; }
+    .case p { color: var(--ink-soft); font-size: 16px; margin-bottom: 10px; }
+    .case .row { font-size: 15px; color: var(--ink-soft); margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+    .case .row b { color: var(--ink); }
+    .note { margin-top: 22px; font-size: 15px; color: var(--muted); max-width: 760px; }
+
+    /* Почему мы */
+    .why { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; margin-top: 44px; }
+    .why .text p { color: var(--ink-soft); margin-bottom: 16px; font-size: 18px; }
+    .why .text p b { color: var(--ink); }
+    .exp { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .exp-head { padding: 18px 24px; font-size: 14px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line); }
+    .exp-row { padding: 16px 24px; border-bottom: 1px solid var(--line); }
+    .exp-row:last-child { border-bottom: none; }
+    .exp-row b { display: block; font-size: 16px; }
+    .exp-row span { font-size: 15px; color: var(--muted); }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+    .pr { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; }
+    .pr b { display: block; margin-bottom: 4px; }
+    .pr span { color: var(--ink-soft); font-size: 16px; }
+
+    /* Как работаем */
+    .steps-sec { background: var(--night); color: var(--night-text); }
+    .steps-sec .lead { color: var(--night-muted); }
+    .steps-sec .eyebrow { color: #6ea8ff; }
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 44px; counter-reset: s; }
+    .step { background: var(--night-2); border: 1px solid var(--night-line); border-radius: var(--radius); padding: 24px 22px; }
+    .step::before { counter-increment: s; content: counter(s); display: inline-flex; width: 34px; height: 34px; border-radius: 50%; align-items: center; justify-content: center; background: var(--accent); color: #fff; font-weight: 700; margin-bottom: 16px; }
+    .step b { display: block; margin-bottom: 6px; font-size: 17px; }
+    .step span { color: var(--night-muted); font-size: 15px; }
+
+    /* Вопросы */
+    .faq { margin-top: 36px; max-width: 840px; }
+    details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+    summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--accent); font-size: 24px; line-height: 1; flex-shrink: 0; }
+    details[open] summary::after { content: "−"; }
+    details p { color: var(--ink-soft); margin-top: 12px; font-size: 16px; }
+
+    /* Заявка */
+    .order { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
+    .order ul { list-style: none; margin: 26px 0; }
+    .order li { padding: 8px 0 8px 30px; position: relative; color: var(--ink-soft); }
+    .order li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+    .form-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: 0 20px 50px rgba(18,22,28,.06); }
+    .form-box iframe { width: 100%; border: 0; min-height: 640px; }
+    .fallback h3 { font-size: 21px; margin-bottom: 8px; }
+    .fallback p { color: var(--ink-soft); font-size: 16px; margin-bottom: 20px; }
+    .contacts { display: flex; flex-direction: column; gap: 12px; }
+    .contact { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--ink); background: var(--paper); transition: border-color .15s; }
+    .contact:hover { border-color: var(--accent); }
+    .contact span { color: var(--muted); font-size: 15px; }
+    .contact b { font-weight: 600; }
+
+    .tg-big { width: 100%; margin-bottom: 12px; background: #229ED9; }
+    .tg-big:hover { background: #1b87bb; }
+    .small { font-size: 14px !important; color: var(--muted) !important; margin: 0 !important; text-align: center; }
+    .tg-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 20;
+      width: 58px; height: 58px; border-radius: 50%; background: #229ED9; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(34,158,217,.45); transition: transform .15s;
     }
-    .contact:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
+    .tg-float svg { margin-left: -3px; }
+    .tg-float:hover { transform: scale(1.08); }
+    footer { background: var(--night); color: var(--night-muted); padding: 40px 0; font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { color: var(--night-muted); }
+
+    @media (max-width: 960px) {
+      nav.menu { display: none; }
+      .pains { grid-template-columns: 1fr 1fr; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .svc, .svc.wide { grid-column: span 1; }
+      .why, .order { grid-template-columns: 1fr; gap: 32px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .principles { grid-template-columns: 1fr; }
     }
-    .contact .label { color: var(--muted); font-size: 14px; min-width: 90px; }
-    .contact .value { font-weight: 600; }
-    footer {
-      margin-top: 36px;
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
-    }
-    @media (max-width: 480px) {
-      .card { padding: 32px 24px; }
-      h1 { font-size: 27px; }
-      .contact { flex-direction: column; align-items: flex-start; gap: 4px; }
-      .contact .label { min-width: 0; }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 16px; }
+      section { padding: 64px 0; }
+      .hero { padding: 64px 0 56px; }
+      .hero .actions .btn { width: 100%; }
+      .facts, .pains, .services, .cases, .steps { grid-template-columns: 1fr; }
+      .svc, .case, .pain, .form-box { padding: 24px 20px; }
+      .top-cta { display: none; }
+      .contact { flex-direction: column; align-items: flex-start; gap: 2px; }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <span class="badge">avllab.ru</span>
-    <h1>Антон</h1>
-    <p class="tagline">Автоматизация бизнес-процессов и&nbsp;ИИ-решения</p>
-    <p class="lead">
-      Помогаю бизнесу убрать рутину: связываю между собой сайты, склады, маркетплейсы
-      и&nbsp;чаты, настраиваю Telegram-ботов и&nbsp;внедряю <strong>ИИ-решения</strong>,
-      которые работают вместо ручного труда.
-    </p>
-    <div class="contacts">
-      <a class="contact" href="https://t.me/Anton_2711" target="_blank" rel="noopener">
-        <span class="label">Telegram</span>
-        <span class="value">@Anton_2711</span>
-      </a>
-      <a class="contact" href="mailto:antondevice@gmail.com">
-        <span class="label">Email</span>
-        <span class="value">antondevice@gmail.com</span>
-      </a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">AVL<span>&nbsp;Lab</span></a>
+    <nav class="menu">
+      <a href="#services">Что делаем</a>
+      <a href="#cases">Проекты</a>
+      <a href="#why">Почему мы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn-primary top-cta" href="#order">Обсудить задачу</a>
+  </div>
+</header>
+
+<main>
+
+<!-- Первый экран -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">ИИ и автоматизация для бизнеса</span>
+    <h1>Внедряем ИИ и&nbsp;автоматизацию туда, где бизнес <em>теряет деньги и&nbsp;время</em></h1>
+    <p class="sub">Не&nbsp;знаете, с&nbsp;чего начать? За&nbsp;один разговор покажем, где в&nbsp;вашем бизнесе ИИ окупится, а&nbsp;где нет. Дальше — боты-консультанты, связка склада с&nbsp;сайтом и&nbsp;маркетплейсами, CRM, контент и&nbsp;обучение команды.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#order">Бесплатный разбор задачи</a>
+      <a class="btn btn-ghost" href="#services">Что мы делаем</a>
     </div>
-    <footer>© 2026 · avllab.ru</footer>
-  </main>
+    <div class="facts">
+      <div class="fact"><b>7 отраслей изнутри</b><span>продажи, сервис, ретейл, авто, гостиницы и&nbsp;не&nbsp;только</span></div>
+      <div class="fact"><b>Пилот за недели</b><span>начинаем с&nbsp;одного участка, а&nbsp;не&nbsp;с&nbsp;перестройки всего</span></div>
+      <div class="fact"><b>Под ключ</b><span>от&nbsp;разбора до&nbsp;обучения людей и&nbsp;сопровождения</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Боли -->
+<section id="pains">
+  <div class="wrap">
+    <p class="eyebrow">Узнаёте?</p>
+    <h2>Деньги утекают не&nbsp;там, где их&nbsp;ищут</h2>
+    <p class="lead">Чаще всего бизнес теряет не&nbsp;на&nbsp;рекламе и&nbsp;не&nbsp;на&nbsp;ценах, а&nbsp;на&nbsp;мелочах, которые повторяются каждый день.</p>
+    <div class="pains">
+      <div class="pain"><div class="ic">🌙</div><p><b>Заявки ждут до&nbsp;утра</b>Клиент написал вечером или в&nbsp;выходной, ответ пришёл на&nbsp;следующий день — а&nbsp;он уже купил у&nbsp;конкурента.</p></div>
+      <div class="pain"><div class="ic">🔁</div><p><b>Одни и&nbsp;те&nbsp;же вопросы</b>Менеджеры по&nbsp;сто раз в&nbsp;день отвечают «есть в&nbsp;наличии?» и&nbsp;«сколько стоит?» вместо того, чтобы продавать.</p></div>
+      <div class="pain"><div class="ic">📦</div><p><b>Остатки не&nbsp;сходятся</b>На&nbsp;сайте одно, на&nbsp;Авито другое, на&nbsp;складе третье. Продаёте то, чего нет, и&nbsp;не&nbsp;продаёте то, что лежит.</p></div>
+      <div class="pain"><div class="ic">🗂️</div><p><b>Клиенты в&nbsp;головах сотрудников</b>История общения — в&nbsp;личных мессенджерах и&nbsp;тетрадках. Ушёл менеджер — ушли и&nbsp;его клиенты.</p></div>
+      <div class="pain"><div class="ic">📱</div><p><b>Соцсети «когда будет время»</b>То&nbsp;есть никогда. Контент нужен регулярно, а&nbsp;делать его некому и&nbsp;некогда.</p></div>
+      <div class="pain"><div class="ic">🤔</div><p><b>Про ИИ слышали, но&nbsp;с&nbsp;чего начать?</b>Непонятно, что из&nbsp;этого реально окупится, а&nbsp;сотрудники то&nbsp;боятся нейросетей, то&nbsp;пользуются ими как попало.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Что делаем</p>
+    <h2>От&nbsp;одного бота до&nbsp;системы, на&nbsp;которой работает весь бизнес</h2>
+    <p class="lead">Ничего не&nbsp;изобретаем с&nbsp;нуля ради красоты. Берём проверенные платформы и&nbsp;ИИ-модели и&nbsp;собираем из&nbsp;них то, что подходит именно вашим процессам.</p>
+    <div class="services">
+
+      <div class="svc wide">
+        <div class="num">01</div>
+        <h3>ИИ-консультанты и&nbsp;боты</h3>
+        <p>Отвечают клиентам в&nbsp;Telegram, на&nbsp;Авито и&nbsp;на&nbsp;сайте круглосуточно. Знают ваш ассортимент и&nbsp;наличие, говорят только то, что есть в&nbsp;ваших данных, а&nbsp;сложные случаи передают живому сотруднику.</p>
+        <ul>
+          <li>Ответ клиенту за&nbsp;секунды, ночью и&nbsp;в&nbsp;выходные</li>
+          <li>Помощник для продавцов: подбор, характеристики, цены</li>
+          <li>Подключение к&nbsp;складу, CRM и&nbsp;прайсам</li>
+        </ul>
+      </div>
+
+      <div class="svc wide">
+        <div class="num">02</div>
+        <h3>Связка ваших систем</h3>
+        <p>Склад, сайт, маркетплейсы, CRM и&nbsp;таблицы начинают обмениваться данными сами. Остатки и&nbsp;цены везде одинаковые, а&nbsp;сотрудники больше ничего не&nbsp;переносят руками.</p>
+        <ul>
+          <li>МойСклад, сайт, Авито, маркетплейсы</li>
+          <li>Отчёты, которые собираются сами</li>
+          <li>Уведомления о&nbsp;важном — в&nbsp;мессенджер</li>
+        </ul>
+      </div>
+
+      <div class="svc dark">
+        <div class="num">03</div>
+        <h3>CRM и&nbsp;сложные системы</h3>
+        <p>Внедряем и&nbsp;дорабатываем amoCRM и&nbsp;Битрикс24, перестраиваем процессы продаж и&nbsp;сервиса, строим системы под задачу на&nbsp;готовых платформах. Крупные проекты ведём вместе с&nbsp;партнёрами — интеграторами CRM.</p>
+        <ul>
+          <li>Аудит и&nbsp;перестройка процессов</li>
+          <li>Доработка под ваш бизнес</li>
+          <li>ИИ внутри CRM</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="num">04</div>
+        <h3>Контент-завод</h3>
+        <p>Система, которая из&nbsp;ваших фото, видео и&nbsp;экспертизы регулярно делает посты, ролики и&nbsp;тексты в&nbsp;вашем стиле. Вы&nbsp;снимаете и&nbsp;рассказываете — завод упаковывает.</p>
+        <ul>
+          <li>Ваш стиль, а&nbsp;не&nbsp;шаблон</li>
+          <li>План публикаций</li>
+          <li>Тексты, обложки, монтаж</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="num">05</div>
+        <h3>Обучение команды и&nbsp;собственника</h3>
+        <p>Корпоративное обучение сотрудников и&nbsp;руководителей работе с&nbsp;нейросетями на&nbsp;ваших же задачах. Отдельно — индивидуальные занятия с&nbsp;собственником.</p>
+        <ul>
+          <li>Практика вместо лекций</li>
+          <li>Правила безопасной работы с&nbsp;данными</li>
+          <li>Сопровождение после обучения</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- По отраслям -->
+<section id="industries" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Для вашей отрасли</p>
+    <h2>Как это может выглядеть именно у&nbsp;вас</h2>
+    <p class="lead">Примеры из&nbsp;отраслей, которые мы&nbsp;знаем изнутри. На&nbsp;разборе подберём то, что подходит вашему бизнесу.</p>
+    <div class="pains">
+      <div class="pain"><div class="ic">🛒</div><p><b>Розница и&nbsp;опт</b>Бот на&nbsp;Авито и&nbsp;в&nbsp;Telegram отвечает по&nbsp;реальным остаткам склада, остатки и&nbsp;цены на&nbsp;сайте обновляются сами.</p></div>
+      <div class="pain"><div class="ic">🚗</div><p><b>Автосервис и&nbsp;дилеры</b>Запись на&nbsp;сервис и&nbsp;напоминания о&nbsp;ТО&nbsp;без звонков, ответы о&nbsp;статусе ремонта и&nbsp;наличии запчастей.</p></div>
+      <div class="pain"><div class="ic">🏨</div><p><b>Гостиницы и&nbsp;рестораны</b>Ответы гостям о&nbsp;свободных датах и&nbsp;бронях круглосуточно, сбор отзывов, контент для соцсетей без отдельного SMM-щика.</p></div>
+      <div class="pain"><div class="ic">🏠</div><p><b>Недвижимость</b>Первичная обработка заявок: бот уточняет бюджет, район и&nbsp;сроки и&nbsp;передаёт агенту уже тёплого клиента.</p></div>
+      <div class="pain"><div class="ic">🚚</div><p><b>Поставки стройматериалов</b>Быстрый расчёт объёма и&nbsp;стоимости доставки по&nbsp;заявке, история клиента и&nbsp;сделок в&nbsp;CRM, а&nbsp;не&nbsp;в&nbsp;блокноте менеджера.</p></div>
+      <div class="pain"><div class="ic">📑</div><p><b>Услуги и&nbsp;консалтинг</b>Ассистент, который собирает с&nbsp;клиента документы и&nbsp;данные по&nbsp;чек-листу и&nbsp;готовит черновики для специалиста.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Кейсы -->
+<section id="cases" class="cases-sec">
+  <div class="wrap">
+    <p class="eyebrow">Проекты</p>
+    <h2>Что уже работает у&nbsp;клиентов</h2>
+    <p class="lead">Названия клиентов не&nbsp;раскрываем без их&nbsp;согласия. Подробности расскажем на&nbsp;разборе.</p>
+    <div class="cases">
+
+      <div class="case">
+        <div class="meta"><span class="who">Магазин спортивного снаряжения</span><span class="tag ok">Работает</span></div>
+        <h3>Автоответчик на&nbsp;Авито, который знает склад</h3>
+        <p>Покупатели присылают рост, вес и&nbsp;размер — бот от&nbsp;имени магазина подбирает подходящие модели из&nbsp;реального наличия, отвечает на&nbsp;типовые вопросы и&nbsp;зовёт продавца, когда нужен человек.</p>
+        <div class="row"><b>Чем отличается от&nbsp;готовых сервисов:</b> он&nbsp;подключён к&nbsp;складу. Не&nbsp;предлагает то, чего нет, и&nbsp;не&nbsp;выдумывает.</div>
+      </div>
+
+      <div class="case">
+        <div class="meta"><span class="who">Магазин сноубордов</span><span class="tag ok">Работает</span></div>
+        <h3>ИИ-помощник продавца в&nbsp;Telegram</h3>
+        <p>Продавец вводит параметры покупателя — бот за&nbsp;секунды предлагает модели из&nbsp;наличия с&nbsp;учётом размерных сеток производителей и&nbsp;показывает, почём эта модель у&nbsp;конкурентов.</p>
+        <div class="row"><b>Результат для бизнеса:</b> новый продавец консультирует как опытный, а&nbsp;руководитель видит цены рынка без ручного мониторинга.</div>
+      </div>
+
+      <div class="case">
+        <div class="meta"><span class="who">Цветочная студия</span><span class="tag ok">Работает</span></div>
+        <h3>Новый сайт под ключ с&nbsp;формой заказа</h3>
+        <p>Переезд с&nbsp;устаревшего сайта, который заваливали спамом, на&nbsp;быстрый и&nbsp;защищённый. Заказ с&nbsp;сайта сразу приходит владельцу на&nbsp;почту и&nbsp;сигналом в&nbsp;Telegram. Лишние платные услуги хостинга отключены.</p>
+        <div class="row"><b>Отдельно:</b> подготовили документы по&nbsp;персональным данным, чтобы форма на&nbsp;сайте работала по&nbsp;закону.</div>
+      </div>
+
+      <div class="case">
+        <div class="meta"><span class="who">Тренер, онлайн-курсы</span><span class="tag pilot">Пилот</span></div>
+        <h3>Контент-завод для эксперта</h3>
+        <p>Строим систему, которая превращает съёмки тренера в&nbsp;посты, ролики и&nbsp;тексты в&nbsp;его стиле, а&nbsp;курсы готовит к&nbsp;выходу на&nbsp;англоязычную аудиторию.</p>
+        <div class="row"><b>Честно:</b> проект в&nbsp;работе, цифр пока нет. Показываем как возможность — на&nbsp;разборе расскажем, как это устроено и&nbsp;что подойдёт вам.</div>
+      </div>
+
+    </div>
+    <p class="note">И&nbsp;сами работаем так, как предлагаем: у&nbsp;нас внутри трудится своя команда ИИ-помощников — юрист, бухгалтер, аналитик рынка и&nbsp;системный администратор. Они не&nbsp;заменяют специалистов, но&nbsp;снимают с&nbsp;нас рутину каждый день.</p>
+  </div>
+</section>
+
+<!-- Почему мы -->
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Почему мы</p>
+    <h2>Мы&nbsp;пришли в&nbsp;технологии из&nbsp;продаж и&nbsp;сервиса, а&nbsp;не&nbsp;наоборот</h2>
+    <div class="why">
+      <div class="text">
+        <p>Основатель AVL&nbsp;Lab&nbsp;— Антон. За&nbsp;плечами годы работы <b>там, где ваши клиенты, менеджеры и&nbsp;деньги</b>: развитие дилерской сети, сервис у&nbsp;официального дилера, руководство отделом продаж.</p>
+        <p>Поэтому разговор начинается не&nbsp;с&nbsp;нейросетей, а&nbsp;с&nbsp;вашего бизнеса: где теряются заявки, на&nbsp;что уходит время сотрудников, что мешает расти. <b>Технология&nbsp;— только инструмент.</b></p>
+        <p>Мы&nbsp;не&nbsp;обещаем «ИИ сделает всё сам». Обещаем другое: разобраться, честно сказать, что окупится, а&nbsp;что нет, и&nbsp;довести до&nbsp;результата.</p>
+      </div>
+      <div class="exp">
+        <div class="exp-head">Отрасли, которые мы знаем изнутри</div>
+        <div class="exp-row"><b>Спорт-ретейл</b><span>9&nbsp;лет развития дилерской сети</span></div>
+        <div class="exp-row"><b>Автобизнес</b><span>официальный дилер Mercedes-Benz: приёмка, сервис, запчасти</span></div>
+        <div class="exp-row"><b>Гостиницы, рестораны и&nbsp;бары</b><span>как устроены сервис и&nbsp;работа с&nbsp;гостем</span></div>
+        <div class="exp-row"><b>Недвижимость</b><span>работа агентства</span></div>
+        <div class="exp-row"><b>Поставки нерудных материалов</b><span>B2B-продажи и&nbsp;логистика</span></div>
+        <div class="exp-row"><b>Консалтинг</b><span>разрешительная документация</span></div>
+        <div class="exp-row"><b>Управление продажами</b><span>руководитель отдела продаж</span></div>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="pr"><b>Говорим на&nbsp;языке бизнеса</b><span>Выручка, конверсия, загрузка сотрудников — а&nbsp;не&nbsp;термины.</span></div>
+      <div class="pr"><b>Ничего не&nbsp;выдумываем</b><span>Боты отвечают только по&nbsp;вашим данным. Нет ответа — зовут человека.</span></div>
+      <div class="pr"><b>Помним о&nbsp;законе</b><span>Персональные данные клиентов — по&nbsp;правилам 152-ФЗ с&nbsp;первого дня.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Как работаем -->
+<section class="steps-sec">
+  <div class="wrap">
+    <p class="eyebrow">Как работаем</p>
+    <h2>Без больших вложений вслепую</h2>
+    <p class="lead">Сначала маленький шаг с&nbsp;понятным результатом. Дальше — только если он&nbsp;окупился.</p>
+    <div class="steps">
+      <div class="step"><b>Разбор</b><span>Бесплатно, 30–40&nbsp;минут. Смотрим, где теряются деньги и&nbsp;время.</span></div>
+      <div class="step"><b>Предложение</b><span>Что автоматизировать первым, сроки и&nbsp;бюджет.</span></div>
+      <div class="step"><b>Пилот</b><span>Запускаем на&nbsp;одном участке и&nbsp;сравниваем с&nbsp;тем, как было.</span></div>
+      <div class="step"><b>Внедрение</b><span>Раскатываем на&nbsp;весь бизнес и&nbsp;обучаем людей.</span></div>
+      <div class="step"><b>Сопровождение</b><span>Следим, дорабатываем, растём вместе с&nbsp;вами.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Вопросы -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Вопросы</p>
+    <h2>Что обычно спрашивают</h2>
+    <div class="faq">
+      <details><summary>Это дорого?</summary><p>Начинаем с&nbsp;пилота на&nbsp;одном участке, а&nbsp;не&nbsp;с&nbsp;перестройки всей компании. Стоимость считаем после разбора — под вашу задачу, а&nbsp;не&nbsp;по&nbsp;прайсу «для всех».</p></details>
+      <details><summary>У&nbsp;нас нет IT-отдела. Мы&nbsp;справимся?</summary><p>Он&nbsp;и&nbsp;не&nbsp;нужен. Мы&nbsp;настраиваем, запускаем и&nbsp;обучаем сотрудников. От&nbsp;вас — знание своего бизнеса и&nbsp;человек, который будет на&nbsp;связи.</p></details>
+      <details><summary>А&nbsp;если бот скажет клиенту что-то не&nbsp;то?</summary><p>Бот отвечает только по&nbsp;вашим данным: ассортимент, наличие, цены, правила. Если ответа нет&nbsp;— он&nbsp;не&nbsp;фантазирует, а&nbsp;передаёт разговор сотруднику. Перед запуском проверяем его на&nbsp;реальных вопросах ваших клиентов.</p></details>
+      <details><summary>Что будет с&nbsp;данными наших клиентов?</summary><p>Ещё до&nbsp;запуска решаем, где хранятся данные и&nbsp;какие документы нужны по&nbsp;закону о&nbsp;персональных данных. Доступы и&nbsp;пароли не&nbsp;передаём через переписку и&nbsp;храним в&nbsp;защищённом хранилище.</p></details>
+      <details><summary>Сотрудники не&nbsp;захотят этим пользоваться</summary><p>Поэтому обучение&nbsp;— часть внедрения, а&nbsp;не&nbsp;опция. Показываем на&nbsp;их&nbsp;собственных задачах, как инструмент экономит им&nbsp;время. Когда это видно, сопротивление уходит.</p></details>
+      <details><summary>Вы&nbsp;работаете с&nbsp;моим городом?</summary><p>Работаем удалённо по&nbsp;всей России: разбор, внедрение и&nbsp;обучение проходят онлайн. Если нужно, приедем на&nbsp;место.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- Заявка -->
+<section id="order" style="padding-top:0">
+  <div class="wrap">
+    <div class="order">
+      <div>
+        <p class="eyebrow">Бесплатный разбор</p>
+        <h2>Расскажите о&nbsp;задаче — разберём её&nbsp;вместе</h2>
+        <p class="lead">30–40 минут разговора, после которого у&nbsp;вас будет понятная картина.</p>
+        <ul>
+          <li>Где ваш бизнес теряет деньги и&nbsp;время</li>
+          <li>Что можно автоматизировать в&nbsp;первую очередь</li>
+          <li>Сколько это примерно стоит и&nbsp;когда окупится</li>
+          <li>Ни&nbsp;к&nbsp;чему не&nbsp;обязывает</li>
+        </ul>
+      </div>
+      <div class="form-box">
+        <div class="fallback">
+          <h3>Напишите нам в&nbsp;Telegram</h3>
+          <p>Коротко расскажите, чем занимается ваш бизнес и&nbsp;что хотите улучшить. Ответим в&nbsp;течение рабочего дня и&nbsp;договоримся о&nbsp;времени разбора.</p>
+          <a class="btn btn-primary tg-big" href="https://t.me/Anton_2711" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.2l-4.8-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+            Написать в&nbsp;Telegram
+          </a>
+          <p class="small">Откроется чат с&nbsp;основателем AVL&nbsp;Lab.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 AVL Lab · avllab.ru</span>
+    <span><a href="https://t.me/Anton_2711" target="_blank" rel="noopener">Telegram</a></span>
+  </div>
+</footer>
+
+<a class="tg-float" href="https://t.me/Anton_2711" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+  <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.2l-4.8-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+</a>
 </body>
 </html>
