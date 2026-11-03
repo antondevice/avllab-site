@@ -159,6 +159,15 @@
       .fl-grid { grid-template-columns: 1fr; }
       .flagship { padding: 26px 20px; }
     }
+    .mid-cta { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 26px; border-radius: var(--radius); background: var(--accent-soft); }
+    .mid-cta span { font-size: 19px; font-weight: 600; }
+    .trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
+    .tr { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .tr-n { width: 34px; height: 34px; border-radius: 50%; background: var(--ok-soft); color: var(--ok); font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .tr b { display: block; margin-bottom: 6px; font-size: 17px; }
+    .tr span { color: var(--ink-soft); font-size: 15px; }
+    @media (max-width: 960px) { .trust { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .trust { grid-template-columns: 1fr; } .mid-cta .btn { width: 100%; } .tg-float { width: 50px; height: 50px; right: 14px; bottom: 14px; } }
     .note { margin-top: 22px; font-size: 15px; color: var(--muted); max-width: 760px; }
 
     /* Почему мы */
@@ -439,7 +448,7 @@
     <div class="cases">
 
       <div class="case">
-        <div class="meta"><span class="who">Магазин спортивного снаряжения</span><span class="tag ok">Работает</span></div>
+        <div class="meta"><span class="who">Спортивный магазин</span><span class="tag ok">Работает</span></div>
         <h3>Автоответчик на&nbsp;Авито, который знает склад</h3>
         <p>Покупатели присылают рост, вес и&nbsp;размер — бот от&nbsp;имени магазина подбирает подходящие модели из&nbsp;реального наличия, отвечает на&nbsp;типовые вопросы и&nbsp;зовёт продавца, когда нужен человек.</p>
         <div class="row"><b>Чем отличается от&nbsp;готовых сервисов:</b> он&nbsp;подключён к&nbsp;складу. Не&nbsp;предлагает то, чего нет, и&nbsp;не&nbsp;выдумывает.</div>
@@ -453,14 +462,32 @@
       </div>
 
       <div class="case">
-        <div class="meta"><span class="who">Тренер, онлайн-курсы</span><span class="tag pilot">Пилот</span></div>
+        <div class="meta"><span class="who">Тренер, онлайн-курсы</span><span class="tag pilot">Внедряем</span></div>
         <h3>Контент-завод для эксперта</h3>
-        <p>Строим систему, которая превращает съёмки тренера в&nbsp;посты, ролики и&nbsp;тексты в&nbsp;его стиле, а&nbsp;курсы готовит к&nbsp;выходу на&nbsp;англоязычную аудиторию.</p>
-        <div class="row"><b>Честно:</b> проект в&nbsp;работе, цифр пока нет. Показываем как возможность — на&nbsp;разборе расскажем, как это устроено и&nbsp;что подойдёт вам.</div>
+        <p>Одна съёмка превращается в&nbsp;серию: короткие ролики, посты, подписи и&nbsp;сторис — в&nbsp;стиле и&nbsp;голосе самого эксперта, по&nbsp;плану публикаций. Курсы параллельно готовим к&nbsp;выходу на&nbsp;англоязычную аудиторию.</p>
+        <div class="row"><b>Что получает эксперт:</b> регулярный контент без отдельного SMM-специалиста. Он&nbsp;снимает и&nbsp;рассказывает — остальное делает система.</div>
       </div>
 
     </div>
-    <p class="note">И&nbsp;сами работаем так, как предлагаем: у&nbsp;нас внутри трудится своя команда ИИ-помощников — юрист, бухгалтер, аналитик рынка и&nbsp;системный администратор. Они не&nbsp;заменяют специалистов, но&nbsp;снимают с&nbsp;нас рутину каждый день.</p>
+    <div class="mid-cta">
+      <span>Хотите так&nbsp;же в&nbsp;своём бизнесе?</span>
+      <a class="btn btn-primary" href="#order">Обсудить задачу</a>
+    </div>
+  </div>
+</section>
+
+<!-- Надёжность -->
+<section id="trust">
+  <div class="wrap">
+    <p class="eyebrow">Про надёжность</p>
+    <h2>ИИ ошибается. Поэтому мы строим так, чтобы ошибка не&nbsp;дошла до&nbsp;клиента</h2>
+    <p class="lead">Нейросеть без присмотра может уверенно сказать неправду. Мы&nbsp;это знаем по&nbsp;своим проектам — и&nbsp;закладываем защиту с&nbsp;первого дня.</p>
+    <div class="trust">
+      <div class="tr"><div class="tr-n">1</div><b>Только ваши данные</b><span>Бот отвечает по&nbsp;вашему складу, прайсу и&nbsp;правилам. Нет данных — честно говорит «уточню» и&nbsp;зовёт сотрудника, а&nbsp;не&nbsp;сочиняет.</span></div>
+      <div class="tr"><div class="tr-n">2</div><b>Проверка до&nbsp;запуска</b><span>Прогоняем систему на&nbsp;реальных вопросах ваших клиентов и&nbsp;сотрудников. В&nbsp;работу идёт только то, что прошло проверку.</span></div>
+      <div class="tr"><div class="tr-n">3</div><b>Каждая правка — через тот&nbsp;же тест</b><span>Исправили одно — проверяем, что не&nbsp;сломали другое. Без этого ИИ-системы «плывут» незаметно.</span></div>
+      <div class="tr"><div class="tr-n">4</div><b>Присмотр после запуска</b><span>Смотрим журнал ответов сами, не&nbsp;дожидаясь жалоб. Ошибки в&nbsp;исходных данных система замечает и&nbsp;сообщает владельцу.</span></div>
+    </div>
   </div>
 </section>
 
@@ -488,7 +515,7 @@
     </div>
     <div class="principles">
       <div class="pr"><b>Говорим на&nbsp;языке бизнеса</b><span>Выручка, конверсия, загрузка сотрудников — а&nbsp;не&nbsp;термины.</span></div>
-      <div class="pr"><b>Ничего не&nbsp;выдумываем</b><span>Боты отвечают только по&nbsp;вашим данным. Нет ответа — зовут человека.</span></div>
+      <div class="pr"><b>Честно про окупаемость</b><span>Если автоматизация не&nbsp;окупится — так и&nbsp;скажем, ещё до&nbsp;начала работ.</span></div>
       <div class="pr"><b>Помним о&nbsp;законе</b><span>Персональные данные клиентов — по&nbsp;правилам 152-ФЗ с&nbsp;первого дня.</span></div>
     </div>
   </div>
