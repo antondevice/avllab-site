@@ -122,6 +122,21 @@
     .svc.dark ul { border-color: var(--night-line); }
     .svc.dark .num { color: #6ea8ff; }
 
+    .svc.full {
+      grid-column: span 6; display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center;
+      background: linear-gradient(135deg, #0d1117 0%, #13284d 100%); border-color: #13284d; color: var(--night-text); padding: 40px;
+    }
+    .svc.full h3 { font-size: clamp(24px, 2.8vw, 30px); }
+    .svc.full p { color: var(--night-muted); font-size: 17px; }
+    .svc.full .num { color: #6ea8ff; display: flex; align-items: center; gap: 10px; }
+    .svc.full .new { background: #6ea8ff; color: #0d1117; border-radius: 999px; padding: 2px 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .svc.full .full-punch { color: var(--night-text); font-weight: 600; font-size: 18px; margin: 0; }
+    .svc.full ul { margin-top: 0; border-top: none; padding-top: 0; background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 14px; padding: 20px 22px; }
+    .svc.full li { color: var(--night-text); font-size: 16px; padding: 7px 0 7px 24px; }
+    .svc.full li::before { color: #6ea8ff; }
+    @media (max-width: 960px) { .svc.full { grid-column: span 2; grid-template-columns: 1fr; gap: 24px; } }
+    @media (max-width: 640px) { .svc.full { grid-column: span 1; padding: 26px 20px; } }
+
     /* Кейсы */
     .cases-sec { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
@@ -373,6 +388,22 @@
         </ul>
       </div>
 
+      <div class="svc full">
+        <div class="full-text">
+          <div class="num">06 <span class="new">Новое</span></div>
+          <h3>Подготовим ваш бизнес к&nbsp;эре агентской экономики</h3>
+          <p>Покупатели начинают поручать покупки ИИ-агентам: «Алиса, найди велосипед до&nbsp;50&nbsp;тысяч и&nbsp;оформи доставку на&nbsp;завтра». Агент не&nbsp;смотрит рекламу и&nbsp;красивые баннеры — он&nbsp;читает данные: цены, наличие, характеристики, условия доставки. Кто к&nbsp;этому готов, того агент находит и&nbsp;выбирает. Остальных он&nbsp;просто не&nbsp;видит.</p>
+          <p class="full-punch">Пока конкуренты читают новости об&nbsp;агентской экономике, вы&nbsp;уже в&nbsp;неё встроены.</p>
+        </div>
+        <ul>
+          <li>Проверяем, находят&nbsp;ли ИИ-помощники ваш бизнес уже сегодня</li>
+          <li>Приводим данные о&nbsp;товарах, ценах и&nbsp;наличии в&nbsp;вид, понятный роботу</li>
+          <li>Делаем условия доставки, оплаты и&nbsp;возврата читаемыми для агента</li>
+          <li>Подключаем к&nbsp;новым каналам продаж через ИИ-помощников по&nbsp;мере их&nbsp;открытия</li>
+          <li>Наполняем сайт экспертным контентом, который нейросети цитируют в&nbsp;ответах</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
@@ -548,6 +579,7 @@
       <details><summary>А&nbsp;если бот скажет клиенту что-то не&nbsp;то?</summary><p>Бот отвечает только по&nbsp;вашим данным: ассортимент, наличие, цены, правила. Если ответа нет&nbsp;— он&nbsp;не&nbsp;фантазирует, а&nbsp;передаёт разговор сотруднику. Перед запуском проверяем его на&nbsp;реальных вопросах ваших клиентов.</p></details>
       <details><summary>Что будет с&nbsp;данными наших клиентов?</summary><p>Ещё до&nbsp;запуска решаем, где хранятся данные и&nbsp;какие документы нужны по&nbsp;закону о&nbsp;персональных данных. Доступы и&nbsp;пароли не&nbsp;передаём через переписку и&nbsp;храним в&nbsp;защищённом хранилище.</p></details>
       <details><summary>Сотрудники не&nbsp;захотят этим пользоваться</summary><p>Поэтому обучение&nbsp;— часть внедрения, а&nbsp;не&nbsp;опция. Показываем на&nbsp;их&nbsp;собственных задачах, как инструмент экономит им&nbsp;время. Когда это видно, сопротивление уходит.</p></details>
+      <details><summary>Агентская экономика — это хайп или пора готовиться?</summary><p>Это начало тренда, а&nbsp;не&nbsp;фантастика: в&nbsp;России Яндекс уже учит Алису выбирать и&nbsp;покупать товары за&nbsp;пользователя и&nbsp;открывает магазинам подключение к&nbsp;таким покупкам. Массовым это станет не&nbsp;завтра. Но&nbsp;подготовка — это прежде всего порядок в&nbsp;данных о&nbsp;товарах, ценах и&nbsp;условиях, а&nbsp;он&nbsp;окупается уже сегодня: в&nbsp;поиске, на&nbsp;маркетплейсах, в&nbsp;работе менеджеров. Поэтому начать сейчас дешевле, чем догонять потом.</p></details>
       <details><summary>Вы&nbsp;работаете с&nbsp;моим городом?</summary><p>Работаем удалённо по&nbsp;всей России: разбор, внедрение и&nbsp;обучение проходят онлайн. Если нужно, приедем на&nbsp;место.</p></details>
     </div>
   </div>
