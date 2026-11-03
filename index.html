@@ -134,6 +134,11 @@
     .svc.full ul { margin-top: 0; border-top: none; padding-top: 0; background: rgba(255,255,255,.04); border: 1px solid var(--night-line); border-radius: 14px; padding: 20px 22px; }
     .svc.full li { color: var(--night-text); font-size: 16px; padding: 7px 0 7px 24px; }
     .svc.full li::before { color: #6ea8ff; }
+    /* Блок сразу под первым экраном: светлая полоса отделяет его от тёмной шапки */
+    .agents-sec { padding: 56px 0 0; }
+    .agents-sec .svc.full { box-shadow: 0 24px 60px rgba(19,40,77,.18); }
+    .agents-cta { margin-top: 24px; }
+    #pains { padding-top: 72px; }
     @media (max-width: 960px) { .svc.full { grid-column: span 2; grid-template-columns: 1fr; gap: 24px; } }
     @media (max-width: 640px) { .svc.full { grid-column: span 1; padding: 26px 20px; } }
 
@@ -308,6 +313,28 @@
   </div>
 </section>
 
+<!-- Агентская экономика -->
+<section id="agents" class="agents-sec">
+  <div class="wrap">
+    <div class="svc full">
+      <div class="full-text">
+        <div class="num"><span class="new">Новое направление</span></div>
+        <h3>Подготовим ваш бизнес к&nbsp;эре агентской экономики</h3>
+        <p>Покупатели начинают поручать покупки ИИ-агентам: «Алиса, найди велосипед до&nbsp;50&nbsp;тысяч и&nbsp;оформи доставку на&nbsp;завтра». Агент не&nbsp;смотрит рекламу и&nbsp;красивые баннеры — он&nbsp;читает данные: цены, наличие, характеристики, условия доставки. Кто к&nbsp;этому готов, того агент находит и&nbsp;выбирает. Остальных он&nbsp;просто не&nbsp;видит.</p>
+        <p class="full-punch">Пока конкуренты читают новости об&nbsp;агентской экономике, вы&nbsp;уже в&nbsp;неё встроены.</p>
+        <a class="btn btn-primary agents-cta" href="#order">Проверить мой бизнес</a>
+      </div>
+      <ul>
+        <li>Проверяем, находят&nbsp;ли ИИ-помощники ваш бизнес уже сегодня</li>
+        <li>Приводим данные о&nbsp;товарах, ценах и&nbsp;наличии в&nbsp;вид, понятный роботу</li>
+        <li>Делаем условия доставки, оплаты и&nbsp;возврата читаемыми для агента</li>
+        <li>Подключаем к&nbsp;новым каналам продаж через ИИ-помощников по&nbsp;мере их&nbsp;открытия</li>
+        <li>Наполняем сайт экспертным контентом, который нейросети цитируют в&nbsp;ответах</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- Боли -->
 <section id="pains">
   <div class="wrap">
@@ -385,22 +412,6 @@
           <li>Практика вместо лекций</li>
           <li>Правила безопасной работы с&nbsp;данными</li>
           <li>Сопровождение после обучения</li>
-        </ul>
-      </div>
-
-      <div class="svc full">
-        <div class="full-text">
-          <div class="num">06 <span class="new">Новое</span></div>
-          <h3>Подготовим ваш бизнес к&nbsp;эре агентской экономики</h3>
-          <p>Покупатели начинают поручать покупки ИИ-агентам: «Алиса, найди велосипед до&nbsp;50&nbsp;тысяч и&nbsp;оформи доставку на&nbsp;завтра». Агент не&nbsp;смотрит рекламу и&nbsp;красивые баннеры — он&nbsp;читает данные: цены, наличие, характеристики, условия доставки. Кто к&nbsp;этому готов, того агент находит и&nbsp;выбирает. Остальных он&nbsp;просто не&nbsp;видит.</p>
-          <p class="full-punch">Пока конкуренты читают новости об&nbsp;агентской экономике, вы&nbsp;уже в&nbsp;неё встроены.</p>
-        </div>
-        <ul>
-          <li>Проверяем, находят&nbsp;ли ИИ-помощники ваш бизнес уже сегодня</li>
-          <li>Приводим данные о&nbsp;товарах, ценах и&nbsp;наличии в&nbsp;вид, понятный роботу</li>
-          <li>Делаем условия доставки, оплаты и&nbsp;возврата читаемыми для агента</li>
-          <li>Подключаем к&nbsp;новым каналам продаж через ИИ-помощников по&nbsp;мере их&nbsp;открытия</li>
-          <li>Наполняем сайт экспертным контентом, который нейросети цитируют в&nbsp;ответах</li>
         </ul>
       </div>
 
