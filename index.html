@@ -124,7 +124,8 @@
 
     /* Кейсы */
     .cases-sec { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 44px; }
+    .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+    @media (max-width: 960px) { .cases { grid-template-columns: 1fr; } }
     .case { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; background: var(--paper); }
     .case .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
     .case .who { font-size: 14px; color: var(--muted); font-weight: 600; }
@@ -135,6 +136,29 @@
     .case p { color: var(--ink-soft); font-size: 16px; margin-bottom: 10px; }
     .case .row { font-size: 15px; color: var(--ink-soft); margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
     .case .row b { color: var(--ink); }
+    .flagship { margin-top: 44px; border-radius: var(--radius); padding: 36px; background: var(--night); color: var(--night-text); }
+    .flagship .who { color: var(--night-muted); font-size: 14px; font-weight: 600; }
+    .flagship .meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .flagship h3 { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; letter-spacing: -.01em; margin-bottom: 14px; max-width: 860px; }
+    .fl-lead { color: var(--night-muted); font-size: 17px; max-width: 820px; }
+    .pipe { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 14px; align-items: center; margin: 30px 0; }
+    .pipe-col { background: var(--night-2); border: 1px solid var(--night-line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; height: 100%; }
+    .pipe-title { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6ea8ff; margin-bottom: 4px; }
+    .chip { font-size: 15px; padding: 8px 12px; border-radius: 10px; background: #1c2431; border: 1px solid var(--night-line); }
+    .chip.sieve { border-style: dashed; }
+    .chip.out { background: #12305e; border-color: #1f4f96; }
+    .pipe-arrow { font-size: 28px; color: #6ea8ff; }
+    .fl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .fl-grid b { display: block; margin-bottom: 6px; font-size: 17px; }
+    .fl-grid p { color: var(--night-muted); font-size: 15px; }
+    .flagship .row { font-size: 15px; color: var(--night-muted); margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--night-line); }
+    .flagship .row b { color: var(--night-text); }
+    @media (max-width: 860px) {
+      .pipe { grid-template-columns: 1fr; }
+      .pipe-arrow { transform: rotate(90deg); justify-self: center; line-height: 1; }
+      .fl-grid { grid-template-columns: 1fr; }
+      .flagship { padding: 26px 20px; }
+    }
     .note { margin-top: 22px; font-size: 15px; color: var(--muted); max-width: 760px; }
 
     /* Почему мы */
@@ -367,6 +391,51 @@
     <p class="eyebrow">Проекты</p>
     <h2>Что уже работает у&nbsp;клиентов</h2>
     <p class="lead">Названия клиентов не&nbsp;раскрываем без их&nbsp;согласия. Подробности расскажем на&nbsp;разборе.</p>
+    <div class="flagship">
+      <div class="meta"><span class="who">Магазин сноубордического снаряжения · флагманский проект</span><span class="tag ok">Работает</span></div>
+      <h3>ИИ-помощник продавца: весь склад, размерные сетки брендов и&nbsp;лучшая цена на&nbsp;рынке — в&nbsp;одном окне Telegram</h3>
+      <p class="fl-lead">Продавец пишет запрос своими словами: «доска для парка, вес&nbsp;75, нога&nbsp;43». Бот понимает его, ищет по&nbsp;реальному наличию всех брендов магазина и&nbsp;за&nbsp;секунды выдаёт подборку — сразу с&nbsp;ценами конкурентов.</p>
+
+      <div class="pipe" aria-label="Как работает парсер лучшей цены">
+        <div class="pipe-col">
+          <div class="pipe-title">Источники</div>
+          <div class="chip">Авито</div>
+          <div class="chip">Яндекс Маркет</div>
+          <div class="chip">Профильные интернет-магазины</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-col">
+          <div class="pipe-title">Три сита</div>
+          <div class="chip sieve">Тот&nbsp;же бренд</div>
+          <div class="chip sieve">Та&nbsp;же модель</div>
+          <div class="chip sieve">Актуальный сезон</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-col">
+          <div class="pipe-title">Продавцу</div>
+          <div class="chip out">Лучшая цена на&nbsp;рынке</div>
+          <div class="chip out">Кто демпингует</div>
+          <div class="chip out">Прошлогодние остатки — отдельно</div>
+        </div>
+      </div>
+
+      <div class="fl-grid">
+        <div>
+          <b>Парсер лучшей цены</b>
+          <p>Площадки охотно подсовывают детские доски и&nbsp;чужие бренды. Каждое предложение проходит проверку по&nbsp;бренду, модели и&nbsp;сезону — лишнее отбрасывается. Принцип: лучше честное «предложений нет», чем неверная цена. У&nbsp;продавца на&nbsp;руках аргумент в&nbsp;разговоре о&nbsp;цене.</p>
+        </div>
+        <div>
+          <b>Живой склад</b>
+          <p>Связка с&nbsp;МойСкладом: остатки обновляются каждые 15&nbsp;минут. К&nbsp;товару — ссылки на&nbsp;фото из&nbsp;альбомов ВКонтакте, которые продавец сразу пересылает покупателю. Ошибки в&nbsp;карточках товаров бот замечает сам и&nbsp;сообщает владельцу.</p>
+        </div>
+        <div>
+          <b>Подбор как у&nbsp;опытного продавца</b>
+          <p>Размерные сетки производителей для досок, ботинок, креплений, защиты и&nbsp;одежды. Подбор аналогов по&nbsp;характеристикам. Экспертные правила владельца магазина. Нет данных — бот не&nbsp;выдумывает, а&nbsp;советует примерить.</p>
+        </div>
+      </div>
+      <div class="row"><b>Результат для бизнеса:</b> новый продавец консультирует как опытный, владелец видит рынок без ручного мониторинга, а&nbsp;доступ к&nbsp;боту есть только у&nbsp;своих сотрудников.</div>
+    </div>
+
     <div class="cases">
 
       <div class="case">
@@ -374,13 +443,6 @@
         <h3>Автоответчик на&nbsp;Авито, который знает склад</h3>
         <p>Покупатели присылают рост, вес и&nbsp;размер — бот от&nbsp;имени магазина подбирает подходящие модели из&nbsp;реального наличия, отвечает на&nbsp;типовые вопросы и&nbsp;зовёт продавца, когда нужен человек.</p>
         <div class="row"><b>Чем отличается от&nbsp;готовых сервисов:</b> он&nbsp;подключён к&nbsp;складу. Не&nbsp;предлагает то, чего нет, и&nbsp;не&nbsp;выдумывает.</div>
-      </div>
-
-      <div class="case">
-        <div class="meta"><span class="who">Магазин сноубордов</span><span class="tag ok">Работает</span></div>
-        <h3>ИИ-помощник продавца в&nbsp;Telegram</h3>
-        <p>Продавец вводит параметры покупателя — бот за&nbsp;секунды предлагает модели из&nbsp;наличия с&nbsp;учётом размерных сеток производителей и&nbsp;показывает, почём эта модель у&nbsp;конкурентов.</p>
-        <div class="row"><b>Результат для бизнеса:</b> новый продавец консультирует как опытный, а&nbsp;руководитель видит цены рынка без ручного мониторинга.</div>
       </div>
 
       <div class="case">
